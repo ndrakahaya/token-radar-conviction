@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Token Radar · Conviction</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div><p class="eyebrow">MAKE.FUN <span>•</span> RESEARCH DESK</p><h1>Token <span>Radar</span></h1><p class="intro">A conviction-first read on early protocol opportunities.</p></div>
+      <div class="snapshot"><span class="live-dot"></span><span id="model-label">CONVICTION-WEIGHTED</span><span class="snapshot-date" id="as-of">Snapshot pending</span></div>
+    </header>
+
+    <section class="controls panel" aria-label="Board controls">
+      <label class="search-wrap"><span class="sr-only">Search protocols</span><span class="search-icon" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search protocols…" autocomplete="off"></label>
+      <label><span class="sr-only">Filter by category</span><select id="category"><option value="">All categories</option></select></label>
+      <label><span class="sr-only">Filter by chain</span><select id="chain"><option value="">All chains</option></select></label>
+      <label class="tvl-filter"><span>Min TVL</span><input id="min-tvl" type="number" min="0" step="1000" placeholder="$0"></label>
+      <label class="sort-filter"><span>Sort</span><select id="sort"><option value="value">Implied value</option><option value="conviction">Conviction</option><option value="tvl">TVL</option><option value="name">Name</option></select></label>
+    </section>
+
+    <section class="top-section">
+      <div class="section-heading"><div><p class="eyebrow">SIGNAL LEADERS</p><h2>Top Conviction</h2></div><span class="subtle">Highest model confidence</span></div>
+      <div class="conviction-grid" id="top-conviction" aria-live="polite"><p class="empty">Loading conviction leaders…</p></div>
+    </section>
+
+    <section class="board-section panel">
+      <div class="section-heading board-heading"><div><p class="eyebrow">OPPORTUNITY BOARD</p><h2>Protocol radar <span class="count" id="result-count">—</span></h2></div><p class="subtle">Select two protocols to compare</p></div>
+      <div class="compare-toolbar" id="compare-toolbar" hidden><span id="compare-count">0 selected</span><button type="button" class="button button-accent" id="compare-button" disabled>Compare selected</button><button type="button" class="button button-quiet" id="clear-compare">Clear</button></div>
+      <div class="loading panel-inner" id="loading" role="status"><span class="spinner"></span>Loading radar data…</div>
+      <div id="board-container" hidden>
+        <div class="table-scroll"><table><thead><tr><th>Rank</th><th>Protocol</th><th>Conviction</th><th>Implied value</th><th>Category</th><th>TVL</th><th>7d change</th><th><span class="sr-only">Compare</span></th></tr></thead><tbody id="board-body"></tbody></table></div>
+        <p class="empty" id="no-results" hidden>No protocols match these filters.</p>
+      </div>
+    </section>
+
+    <section class="compare-section panel" id="compare-panel" hidden></section>
+    <section class="detail panel" id="detail-panel" hidden aria-live="polite"></section>
+    <footer><span>Model: conviction-weighted</span><span>Research signal, not financial advice.</span></footer>
+  </main>
+  <script src="../data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
