@@ -67,14 +67,6 @@ try {
     const source = assetSource(name);
     if (source === null) mkdirSync(join(out, name), { recursive: true });
     else copyTree(source, join(out, name));
-    if (name === 'screenshots') {
-      // Root captures take precedence over an output's previous screenshot copy.
-      if (existsSync(projectScreenshots) && statSync(projectScreenshots).isDirectory()) {
-        copyTree(projectScreenshots, join(out, name));
-      } else if (source === null && resolvedOut !== outputScreenshots && resolvedOut !== outputScreenshotsAlt) {
-        writeFileSync(join(out, name, 'cover.png'), Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j2ioAAAAASUVORK5CYII=', 'base64'));
-      }
-    }
   }
 
   writeFileSync(join(out, 'dossier.json'), buildDossier(out, { text_max_bytes: TEXT_MAX_BYTES, screenshots: SCREENSHOT_CAPS, dashboard: DASHBOARD_CAPS }));
